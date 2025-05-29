@@ -27,10 +27,10 @@ public class BaseTest {
 
     @Parameters({"browser"})
     @BeforeMethod
-    @Step("")
+    @Step("Открытие сайта на странице авторизации")
     public void setup(@Optional("chrome") String browser, ITestContext context) {
         if (browser.equalsIgnoreCase("chrome")) {
-            System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+            WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
             options.addArguments("--guest");
@@ -52,7 +52,7 @@ public class BaseTest {
         password = PropertyReader.getProperty("saucedemo.password");
     }
 
-    @Step("Закрытие")
+    @Step("Закрытие браузера")
     @AfterMethod
     public void close() {
         driver.quit();
