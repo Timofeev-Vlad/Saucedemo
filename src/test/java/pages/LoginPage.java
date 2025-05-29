@@ -42,6 +42,7 @@ public class LoginPage extends BasePage {
         driver.findElement(LOGIN_BUTTON).submit();
     }
 
+    @Step("Получаем текст ошибки при безуспешной авторизации")
     public String getErrorMsg() {
         return driver.findElement(errorMsg).getText();
     }
